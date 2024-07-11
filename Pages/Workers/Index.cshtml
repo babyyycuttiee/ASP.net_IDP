@@ -1,0 +1,38 @@
+@page
+@model Job_Distribuition.Pages.Workers.IndexModel
+@{
+}
+
+<br>
+<h2>List of Workers</h2>
+<a class='btn btn-primary btn-sm' href='/Workers/Create'>New Worker</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Workers ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Nationality</th>
+            <th>Created At</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.listWorkers)
+        {
+            <tr>
+                <td>@item.workers_id</td>
+                <td>@item.name</td>
+                <td>@item.email</td>
+                <td>@item.phone</td>
+                <td>@item.nationality</td>
+                <td>@item.created_at</td>
+                <td>
+                    <a class="btn btn-primary btn-sm" href="/Workers/Edit?id=@item.id">Edit</a>
+                    <a class="btn btn-danger btn-sm" href="/Workers/Delete?id=@item.id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

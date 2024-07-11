@@ -1,0 +1,37 @@
+﻿@page
+@using System.Data.SqlClient;
+
+@{
+    try
+    {
+        String id = Request.Query["id"];
+
+        // Validate input parameter
+        if (!int.TryParse(id, out int workerId))
+        {
+            throw new Exception("Invalid worker ID.");
+        }
+
+        String connectionString = "Data Source=.\\sqlexpress;Initial Catalog=Job_Distribuition;Integrated Security=True";
+        using (SqlConnection connection = new SqlConnection(connectionString))
+        {
+            connection.Open();
+
+            String sql = "DELETE FROM workers WHERE id=@id";
+            using (SqlCommand command = new SqlCommand(sql, connection))
+            {
+                command.Parameters.AddWithValue("@id", id);
+
+                command.ExecuteNonQuery();
+            }
+        }
+        Response.Redirect("/Workers/Index"); //redrict to index page on success
+    }
+    catch(Exception ex)
+    {
+        Console.WriteLine("Error deleting workers: " + ex.Message); //log or display error message
+    }
+
+    }
+
+}
