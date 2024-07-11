@@ -1,0 +1,42 @@
+﻿@page
+@model Job_Distribuition.Pages.Historical_Job_Logging.IndexModel
+
+@{
+    string nullDate = "1/1/1900";
+}
+<br />
+<h2>Historical Job Logging</h2>
+<a class="btn btn-primary btn-sm" href="/Historical_Job_Logging/Create">New Task</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Task ID</th>
+            <th>Request Date</th>
+            <th>Submission Date</th>
+            <th>Start Date</th>
+            <th>Finish Date</th>
+            <th>Machine Used</th>
+            <th>Materials Used</th>
+            <th>Workers ID</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.listHistorical_Job_Logging)
+        {
+            <tr>
+                <td>@item.task_id</td>
+                <td>@(item.request_date == nullDate ? "" : item.request_date)</td>
+                <td>@(item.submission_date == nullDate ? "" : item.submission_date)</td>
+                <td>@(item.start_date == nullDate ? "" : item.start_date)</td>
+                <td>@(item.finish_date == nullDate ? "" : item.finish_date)</td>
+                <td>@item.machine_used</td>
+                <td>@item.material_used</td>
+                <td>@item.workers_id</td>
+                <td>
+                    <a class="btn btn-primary btn-sm" href="/Historical_Job_Logging/Edit?id=@item.id">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

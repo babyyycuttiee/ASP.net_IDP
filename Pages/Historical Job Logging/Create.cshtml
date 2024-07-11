@@ -1,0 +1,57 @@
+﻿@page
+@model Job_Distribuition.Pages.Historical_Job_Logging.CreateModel
+@{
+}
+
+<br>
+<h2>New Task</h2>
+
+@if (Model.errorMessage.Length > 0)
+{
+    <div class='alert alert-warning alert-dismissible fade show' role='alert'>
+        <strong>@Model.errorMessage</strong>
+        <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+    </div>
+}
+
+<form method="POST">
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Request Date</label>
+        <div>
+            <input type="text" class="form-control" name="request_date" value="@Model.historical_job_loggingInfo.request_date" required>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Submission Date</label>
+        <div>
+            <input type="text" class="form-control" name="submission_date" value="@Model.historical_job_loggingInfo.submission_date" required>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Machine Used</label>
+        <div>
+            <input type="text" class="form-control" name="machine_used" value="@Model.historical_job_loggingInfo.machine_used" required>
+        </div>
+    </div>
+
+    @if (Model.successMessage.Length > 0)
+    {
+        <div class="row mb-3">
+            <div class="col-sm-9">
+                <div class='alert alert-warning alert-dismissible fade show' role='alert'>
+                    <strong>@Model.successMessage</strong>
+                    <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="row mb-3">
+        <div class="offset-sm-3 col-sm-3 d-grid">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+        <div class="col-sm-3 d-grid">
+            <a class="btn btn-outline-primary" href="/Historical_Job_Logging/Index" role="button">Cancel</a>
+        </div>
+    </div>
+</form>
