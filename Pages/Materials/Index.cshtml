@@ -1,0 +1,30 @@
+﻿@page
+@model Job_Distribuition.Pages.Materials.IndexModel
+@{
+}
+<br>
+<h2>List of Materials</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Units</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.listMaterials)
+        {
+            <tr>
+                <td>@item.id</td>
+                <td>@item.name</td>
+                <td>@item.units</td>
+                <td>
+                    <a class="btn btn-primary btn-sm" href="/Materials/Edit?id=@item.id">Edit</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
